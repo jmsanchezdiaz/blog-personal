@@ -12,7 +12,7 @@ const Update = ({ post }) => {
   const tagsObject = useTags(post.tags || []);
 
   const handleSubmit = (values, { setSubmitting }) => {
-    let updatedPost = { ...values, tags: curTags };
+    let updatedPost = { ...values, tags: tagsObject.curTags };
     updatePost(post.id, updatedPost);
     setSubmitting(false);
   };

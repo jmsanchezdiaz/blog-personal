@@ -140,14 +140,6 @@ const PostScreen = ({ post }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  let paths = await getPostsIds();
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
 export const getServerSideProps = withPrivate(async (ctx) => {
   const post = await getPostById(ctx.query.id);
   if (!post)

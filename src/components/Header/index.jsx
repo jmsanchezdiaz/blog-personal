@@ -1,18 +1,17 @@
 import { EditIcon, Icon, SearchIcon } from '@chakra-ui/icons';
-import { Button, HStack, Switch, useColorMode } from '@chakra-ui/react';
+import { HStack, Switch, useColorMode } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
 import { isAdminUser } from '../../helpers/helpers';
 import { useAuth } from '../../hooks/useAuth';
-import { ButtonRef, IconButtonRef } from '../ComponentsWIthRef';
+import { IconButtonRef } from '../ComponentsWIthRef';
 import { AiFillHome } from 'react-icons/ai';
-import { FiLogIn, FiLogOut } from 'react-icons/fi';
-import { useRouter } from 'next/router';
+import LoginButton from '../LoginButton';
+import LogoutButton from '../LogoutButton';
 
 const Header = ({ isLoginScreen }) => {
   const { toggleColorMode } = useColorMode();
-  const { authUser, logOut } = useAuth();
-  const router = useRouter();
+  const { authUser } = useAuth();
 
   return (
     <HStack mb={6} mt={2} w='full' alignItems='center' justify='space-between'>
@@ -36,21 +35,7 @@ const Header = ({ isLoginScreen }) => {
           </Link>
         )}
 
-        {!isLoginScreen && authUser ? (
-          <Button
-            onClick={logOut}
-            colorScheme='red'
-            d={['none', 'inline-block', 'inline-block', 'inline-block']}
-            leftIcon={<Icon as={FiLogOut} />}>
-            Log Out
-          </Button>
-        ) : (
-          <Link passHref href='/auth/login'>
-            <ButtonRef colorScheme='blue' leftIcon={<Icon as={FiLogIn} />}>
-              Log In
-            </ButtonRef>
-          </Link>
-        )}
+        {!isLoginScreen && (authUser ? <LogoutButton /> : <LoginButton />)}
 
         <Link passHref href='/posts/search'>
           <IconButtonRef

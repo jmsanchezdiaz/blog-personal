@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import es from 'date-fns/locale/es';
 import cookie from 'cookie';
+import Cookies from 'js-cookie';
 
 export const parseArrayToString = (arr = []) => arr?.join(', ');
 
@@ -26,5 +27,5 @@ export const formatDate = (ms) => {
 };
 
 export const parseCookie = (req) => {
-  return cookie.parse(req ? req.headers.cookie || '' : document.cookie);
+  return cookie.parse(req ? req.headers.cookie || '' : '');
 };

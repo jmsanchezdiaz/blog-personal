@@ -1,16 +1,14 @@
 import { Heading } from '@chakra-ui/react';
-import React, { useState } from 'react';
 import CreateForm from '../../../src/components/CreateForm';
 import Header from '../../../src/components/Header';
-import { withAuth } from '../../../src/components/hoc/withAuth';
-import ProtectedComponent, {
-  PrivateComponent,
-} from '../../../src/components/ProtectedComponent';
+import { withPrivate } from '../../../src/components/hoc/withAuth';
+import PrivateComponent from '../../../src/components/PrivateComponent';
 import {
   getPostById,
   getPostsIds,
 } from '../../../src/dbcontrollers/controllers';
 import { usePosts } from '../../../src/hooks/usePosts';
+import { useTags } from '../../../src/hooks/useTags';
 
 const Update = ({ post }) => {
   const { updatePost } = usePosts();
@@ -36,16 +34,8 @@ const Update = ({ post }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  let paths = await getPostsIds();
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps = withAuth(async ({ params }) => {
-  const post = await getPostById(params.id);
+export const getServerSideProps = withPrivate(async (ctx) => {
+  const post = await getPostById(ctx.query.id);
   if (!post)
     return {
       notFound: true,

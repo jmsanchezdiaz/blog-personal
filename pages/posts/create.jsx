@@ -1,8 +1,8 @@
 import { Heading } from '@chakra-ui/react';
 import CreateForm from '../../src/components/CreateForm';
 import Header from '../../src/components/Header';
-import { withAuth } from '../../src/components/hoc/withAuth';
-import { PrivateComponent } from '../../src/components/ProtectedComponent';
+import { withPrivate } from '../../src/components/hoc/withAuth';
+import PrivateComponent from '../../src/components/PrivateComponent';
 import { usePosts } from '../../src/hooks/usePosts';
 import useTags from '../../src/hooks/useTags';
 
@@ -39,7 +39,7 @@ const Create = () => {
   );
 };
 
-export const getServerSideProps = withAuth(() => {
+export const getServerSideProps = withPrivate(() => {
   return {
     props: {},
   };

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Button,
   FormControl,
@@ -18,7 +17,7 @@ import { BsGoogle } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 import { CustomInput } from '../../src/components/CustomInput';
 import { withPublic } from '../../src/components/hoc/withAuth';
-import { PublicComponent } from '../../src/components/ProtectedComponent';
+import PublicComponent from '../../src/components/PublicComponent';
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const useTags = (init = []) => {
+export const useTags = (init = []) => {
   const [curTags, setTags] = useState(init);
 
   const addTag = (tag) => {
@@ -16,5 +16,3 @@ const useTags = (init = []) => {
 
   return { curTags, addTag, deleteTag, resetTags };
 };
-
-export default useTags;

@@ -7,8 +7,8 @@ import PaginationControls from '../../src/components/PaginationControls';
 import PostsList from '../../src/components/PostsList';
 import { usePagination } from '../../src/hooks/usePagination';
 import { usePosts } from '../../src/hooks/usePosts';
-import { withAuth } from '../../src/components/hoc/withAuth';
-import { PrivateComponent } from '../../src/components/ProtectedComponent';
+import { withPrivate } from '../../src/components/hoc/withAuth';
+import PrivateComponent from '../../src/components/PrivateComponent';
 
 const ELEMENTS_PER_PAGE = 4;
 
@@ -52,7 +52,7 @@ const Dashboard = () => {
   );
 };
 
-export const getServerSideProps = withAuth(() => {
+export const getServerSideProps = withPrivate(async () => {
   return {
     props: {},
   };

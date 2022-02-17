@@ -15,7 +15,7 @@ import { registerSchema } from '../../src/helpers/validationSchema';
 import { toast } from 'react-toastify';
 import { CustomInput } from '../../src/components/CustomInput';
 import { withPublic } from '../../src/components/hoc/withAuth';
-import { PublicComponent } from '../../src/components/ProtectedComponent';
+import PublicComponent from '../../src/components/PublicComponent';
 
 const Register = () => {
   const { register } = useAuth();

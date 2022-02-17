@@ -8,6 +8,7 @@ Este proyecto nace cuando decidi lanzarme a aprender next js y chakra ui. Creo q
 - Podes darle me gusta a un post.
 - Podes compartir en twitter un post.
 - Podes buscar posts.
+- Darkmode
 
 :bust_in_silhouette: **Funcionalidades de Usuario Admin.**
 - Acceso a un dashboard con control de los posts creados.

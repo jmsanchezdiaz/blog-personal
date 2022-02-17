@@ -162,22 +162,4 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-// export const getServerSideProps = async (ctx) => {
-//   const post = await getPostById(ctx.query.id);
-//   if (!post)
-//     return {
-//       notFound: true,
-//     };
-
-//   ctx.res.setHeader(
-//     'Cache-Control',
-//     'public, s-maxage=10, stale-while-revalidate=59',
-//   );
-//   return {
-//     props: {
-//       post,
-//     },
-//   };
-// };
-
 export default PostScreen;

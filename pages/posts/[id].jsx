@@ -140,7 +140,7 @@ const PostScreen = ({ post }) => {
   );
 };
 
-export const getServerSideProps = withPrivate(async (ctx) => {
+export const getServerSideProps = async (ctx) => {
   const post = await getPostById(ctx.query.id);
   if (!post)
     return {
@@ -151,5 +151,5 @@ export const getServerSideProps = withPrivate(async (ctx) => {
       post,
     },
   };
-});
+};
 export default PostScreen;

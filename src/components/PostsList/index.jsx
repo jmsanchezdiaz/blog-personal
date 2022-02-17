@@ -2,8 +2,8 @@ import { Divider, Heading, VStack } from '@chakra-ui/react';
 import React from 'react';
 import Post from '../Post';
 
-const PostsList = ({ posts, areEditable, ...rest }) => {
-  if (!posts || !posts.length)
+const PostsList = ({ isSearchResult, posts = [], areEditable, ...rest }) => {
+  if (!isSearchResult && !posts.length)
     return <Heading size='md'>No hay posts disponibles</Heading>;
 
   return (

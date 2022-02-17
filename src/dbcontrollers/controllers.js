@@ -39,7 +39,6 @@ export const addPost = async (newPost) => {
 export const getPostsIds = async () => {
   try {
     let { docs } = await getDocs(postsCollection);
-    if (!docs.length) return docs;
 
     return docs.map((doc) => {
       return {

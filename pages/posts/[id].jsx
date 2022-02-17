@@ -140,43 +140,44 @@ const PostScreen = ({ post }) => {
   );
 };
 
-// export const getStaticPaths = async () => {
-//   let paths = await getPostsIds();
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
+export const getStaticPaths = async () => {
+  let paths = await getPostsIds();
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
-// export const getStaticProps = async ({ params }) => {
-//   const post = await getPostById(params.id);
+export const getStaticProps = async ({ params }) => {
+  const post = await getPostById(params.id);
+  if (!post)
+    return {
+      notFound: true,
+    };
+  return {
+    props: {
+      post,
+    },
+    revalidate: 59,
+  };
+};
+
+// export const getServerSideProps = async (ctx) => {
+//   const post = await getPostById(ctx.query.id);
 //   if (!post)
 //     return {
 //       notFound: true,
 //     };
+
+//   ctx.res.setHeader(
+//     'Cache-Control',
+//     'public, s-maxage=10, stale-while-revalidate=59',
+//   );
 //   return {
 //     props: {
 //       post,
 //     },
 //   };
 // };
-
-export const getServerSideProps = async (ctx) => {
-  const post = await getPostById(ctx.query.id);
-  if (!post)
-    return {
-      notFound: true,
-    };
-
-  ctx.res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59',
-  );
-  return {
-    props: {
-      post,
-    },
-  };
-};
 
 export default PostScreen;

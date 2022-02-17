@@ -82,7 +82,12 @@ const Search = () => {
           <Spinner size='xl' />
         </Center>
       )}
-      <PostsList minH='xs' alignItems='flex-start' posts={filtered} />
+      <PostsList
+        isSearchResult
+        minH='xs'
+        alignItems='flex-start'
+        posts={filtered}
+      />
 
       <PaginationControls {...pagination} />
     </div>

@@ -148,8 +148,8 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
-  const post = await getPostById(params.id);
+export const getServerSideProps = withPrivate(async (ctx) => {
+  const post = await getPostById(ctx.query.id);
   if (!post)
     return {
       notFound: true,
@@ -158,8 +158,6 @@ export const getStaticProps = async ({ params }) => {
     props: {
       post,
     },
-    revalidate: 5,
   };
-};
-
+});
 export default PostScreen;

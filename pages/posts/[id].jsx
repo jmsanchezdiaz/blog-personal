@@ -30,7 +30,7 @@ const PostScreen = ({ post }) => {
   const { authUser } = useAuth();
   const { updatePost } = usePosts();
   const [currentPost, setCurrentPost] = useState(post);
-
+  console.log(currentPost, post);
   const { id, likes, usersWhoLike, content, title, tags, date } = currentPost;
 
   const twitterLink = useTwitterLink({

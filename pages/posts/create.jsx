@@ -4,7 +4,7 @@ import Header from '../../src/components/Header';
 import { withPrivate } from '../../src/components/hoc/withAuth';
 import PrivateComponent from '../../src/components/PrivateComponent';
 import { usePosts } from '../../src/hooks/usePosts';
-import useTags from '../../src/hooks/useTags';
+import { useTags } from '../../src/hooks/useTags';
 
 const Create = () => {
   const { createPost } = usePosts();

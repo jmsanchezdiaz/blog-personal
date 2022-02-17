@@ -3,10 +3,7 @@ import CreateForm from '../../../src/components/CreateForm';
 import Header from '../../../src/components/Header';
 import { withPrivate } from '../../../src/components/hoc/withAuth';
 import PrivateComponent from '../../../src/components/PrivateComponent';
-import {
-  getPostById,
-  getPostsIds,
-} from '../../../src/dbcontrollers/controllers';
+import { getPostById } from '../../../src/dbcontrollers/controllers';
 import { usePosts } from '../../../src/hooks/usePosts';
 import { useTags } from '../../../src/hooks/useTags';
 

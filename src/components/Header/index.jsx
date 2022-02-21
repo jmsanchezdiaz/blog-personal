@@ -1,5 +1,5 @@
 import { EditIcon, Icon, SearchIcon } from '@chakra-ui/icons';
-import { HStack, Switch, useColorMode } from '@chakra-ui/react';
+import { HStack } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
 import { isAdminUser } from '../../helpers/helpers';
@@ -8,9 +8,9 @@ import { IconButtonRef } from '../ComponentsWIthRef';
 import { AiFillHome } from 'react-icons/ai';
 import LoginButton from '../LoginButton';
 import LogoutButton from '../LogoutButton';
+import DarkmodeSwitch from '../DarkmodeSwitch';
 
 const Header = ({ isLoginScreen }) => {
-  const { toggleColorMode } = useColorMode();
   const { authUser } = useAuth();
 
   return (
@@ -45,8 +45,7 @@ const Header = ({ isLoginScreen }) => {
           />
         </Link>
       </HStack>
-
-      <Switch id='darkmode-switch' onChange={toggleColorMode} />
+      <DarkmodeSwitch />
     </HStack>
   );
 };

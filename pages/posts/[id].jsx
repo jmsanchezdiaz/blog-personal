@@ -45,9 +45,14 @@ const PostScreen = ({ post }) => {
     if (!authUser) {
       return infoToast('Debe estar logeado para dar interactuar');
     }
+
+    const usersWhoLikedThePost = usersWhoLike.filter(
+      (user) => user.id !== authUser.id,
+    );
+
     let modifiedFields = {
-      usersWhoLike: usersWhoLike.filter((user) => user.id !== authUser.id),
-      likes: likes - 1,
+      usersWhoLike: usersWhoLikedThePost,
+      likes: usersWhoLikedThePost.length,
     };
     updatePost(id, modifiedFields, false);
     setCurrentPost({ ...currentPost, ...modifiedFields });
@@ -57,9 +62,11 @@ const PostScreen = ({ post }) => {
     if (!authUser) {
       return infoToast('Debe estar logeado para dar interactuar');
     }
+    const usersWhoLikedThePost = usersWhoLike.concat(authUser.email);
+
     let modifiedFields = {
-      usersWhoLike: usersWhoLike.concat(authUser.email),
-      likes: likes + 1,
+      usersWhoLike: usersWhoLikedThePost,
+      likes: usersWhoLikedThePost.length,
     };
     updatePost(id, modifiedFields, false);
     setCurrentPost({ ...currentPost, ...modifiedFields });

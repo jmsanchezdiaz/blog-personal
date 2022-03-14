@@ -16,41 +16,22 @@ import { toast } from 'react-toastify';
 import { CustomInput } from '../../src/components/CustomInput';
 import { withPublic } from '../../src/components/hoc/withAuth';
 import PublicComponent from '../../src/components/PublicComponent';
-import SEO from '../../src/components/seo';
+import SEO from '../../src/components/seo/seo.jsx';
 
 const Register = () => {
   const { register } = useAuth();
 
   const handleSubmit = (values, { setSubmitting }) => {
-    register(values)
-      .then(() => {
-        toast('Usuario registrado correctamente', {
-          position: 'top-center',
-          theme: 'dark',
-          type: 'success',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true
-        });
-      })
-      .catch((err) => {
-        toast(err.message, {
-          position: 'top-center',
-          theme: 'dark',
-          type: 'error',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true
-        });
-      });
+    register(values);
     setSubmitting(false);
   };
 
   return (
     <PublicComponent>
-      <SEO />
+      <SEO
+        title='Pagina de Registro'
+        description='Pagina de registro a mi blog'
+      />
       <Header isLoginScreen />
       <Heading>Register to my blog</Heading>
       <Formik

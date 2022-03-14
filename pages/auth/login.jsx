@@ -6,7 +6,8 @@ import {
   FormErrorMessage,
   VStack,
   Icon,
-  IconButton
+  IconButton,
+  Link as UILink
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import Header from '../../src/components/Header';
@@ -18,7 +19,8 @@ import { useRouter } from 'next/router';
 import { CustomInput } from '../../src/components/CustomInput';
 import { withPublic } from '../../src/components/hoc/withAuth';
 import PublicComponent from '../../src/components/PublicComponent';
-import SEO from '../../src/components/seo';
+import SEO from '../../src/components/seo/seo.jsx';
+import Link from 'next/link';
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
@@ -35,7 +37,10 @@ const Login = () => {
   };
   return (
     <PublicComponent>
-      <SEO />
+      <SEO
+        title='Pagina de Ingreso'
+        description='Pagina de ingreso a mi blog'
+      />
       <Header isLoginScreen />
       <Heading>Login</Heading>
       <Formik
@@ -58,7 +63,11 @@ const Login = () => {
                 <FormErrorMessage>{errors.password}</FormErrorMessage>
               </FormControl>
             </VStack>
-
+            <Link href='/auth/recover' passHref>
+              <UILink d='block' my={4}>
+                Recupera tu contraseña
+              </UILink>
+            </Link>
             <Button type='submit' colorScheme='purple'>
               Login
             </Button>

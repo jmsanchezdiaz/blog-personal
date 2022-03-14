@@ -10,7 +10,6 @@ import {
   useColorModeValue,
   VStack
 } from '@chakra-ui/react';
-import Head from 'next/head';
 
 import Image from 'next/image';
 import Header from '../src/components/Header';
@@ -19,7 +18,7 @@ import { usePagination } from '../src/hooks/usePagination';
 import PaginationControls from '../src/components/PaginationControls';
 import PostsList from '../src/components/PostsList';
 import SocialMediaLinks from '../src/components/SocialMediaLinks';
-import SEO from '../src/components/seo';
+import SEO from '../src/components/seo/seo.jsx';
 
 const ELEMENTS_PER_PAGE = 4;
 

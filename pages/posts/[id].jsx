@@ -15,7 +15,7 @@ import {
   AiOutlineHeart,
   AiFillTwitterCircle
 } from 'react-icons/ai';
-import { getPostById, getPostsIds } from '../../src/dbcontrollers/controllers';
+import { getPostById } from '../../src/dbcontrollers/controllers';
 import { capitalize, parseArrayToString } from '../../src/helpers/helpers';
 import { useState } from 'react';
 import { useAuth } from '../../src/hooks/useAuth';
@@ -25,7 +25,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { useTwitterLink } from '../../src/hooks/useTwitterLink';
-import SEO from '../../src/components/seo';
+import SEO from '../../src/components/seo.jsx';
 
 const PostScreen = ({ post }) => {
   const { authUser } = useAuth();
@@ -75,7 +75,12 @@ const PostScreen = ({ post }) => {
 
   return (
     <Container py={2} maxW='container.md'>
-      <SEO />
+      <SEO
+        title={post.title}
+        description={
+          'Post que trata sobre los siguentes temas: ' + post.tags.join(', ')
+        }
+      />
       <Header />
       <VStack spacing={1} mb={3} alignItems='flex-start'>
         <Heading color='purple.500' mt={2} as='h2'>

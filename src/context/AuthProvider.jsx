@@ -2,9 +2,10 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
-  signOut,
+  signOut
 } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { createContext, useEffect, useState } from 'react';
@@ -36,12 +37,18 @@ export default function AuthProvider({ children }) {
       .then(() => successToast('Sesion creada con exito'))
       .catch((err) => errorToast(err.message));
 
+  const recover = (email) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => successToast('Email de restauracion enviado!'))
+      .catch((err) => errorToast(err.message));
+  };
+
   const logOut = () =>
     signOut(auth)
       .then(() => {
         Cookies.remove('user', {
           sameSite: 'lax',
-          secure: true,
+          secure: true
         });
         successToast('Sesion cerrada con exito');
       })
@@ -52,11 +59,11 @@ export default function AuthProvider({ children }) {
       if (user) {
         const formatUser = {
           uid: user.uid,
-          email: user.email,
+          email: user.email
         };
         Cookies.set('user', JSON.stringify(formatUser), {
           sameSite: 'lax',
-          secure: true,
+          secure: true
         });
         setAuthUser(formatUser);
         return;
@@ -72,7 +79,7 @@ export default function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ signInWithGoogle, authUser, logOut, register, signIn }}>
+      value={{ signInWithGoogle, authUser, logOut, recover, register, signIn }}>
       {children}
     </AuthContext.Provider>
   );

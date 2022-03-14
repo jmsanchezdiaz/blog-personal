@@ -6,7 +6,7 @@ import {
   FormErrorMessage,
   VStack,
   Icon,
-  IconButton,
+  IconButton
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import Header from '../../src/components/Header';
@@ -18,6 +18,7 @@ import { useRouter } from 'next/router';
 import { CustomInput } from '../../src/components/CustomInput';
 import { withPublic } from '../../src/components/hoc/withAuth';
 import PublicComponent from '../../src/components/PublicComponent';
+import SEO from '../../src/components/seo';
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
@@ -34,6 +35,7 @@ const Login = () => {
   };
   return (
     <PublicComponent>
+      <SEO />
       <Header isLoginScreen />
       <Heading>Login</Heading>
       <Formik

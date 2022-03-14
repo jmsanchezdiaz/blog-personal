@@ -8,12 +8,12 @@ import {
   HStack,
   IconButton,
   Text,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
 import {
   AiFillHeart,
   AiOutlineHeart,
-  AiFillTwitterCircle,
+  AiFillTwitterCircle
 } from 'react-icons/ai';
 import { getPostById, getPostsIds } from '../../src/dbcontrollers/controllers';
 import { capitalize, parseArrayToString } from '../../src/helpers/helpers';
@@ -25,6 +25,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { useTwitterLink } from '../../src/hooks/useTwitterLink';
+import SEO from '../../src/components/seo';
 
 const PostScreen = ({ post }) => {
   const { authUser } = useAuth();
@@ -35,7 +36,7 @@ const PostScreen = ({ post }) => {
   const twitterLink = useTwitterLink({
     title: title,
     hashtags: tags,
-    fallbackURL: 'https://twitter.com',
+    fallbackURL: 'https://twitter.com'
   });
 
   const isLikedByCurrentUser = usersWhoLike.includes(authUser?.email);
@@ -47,12 +48,12 @@ const PostScreen = ({ post }) => {
     }
 
     const usersWhoLikedThePost = usersWhoLike.filter(
-      (user) => user.id !== authUser.id,
+      (user) => user.id !== authUser.id
     );
 
     let modifiedFields = {
       usersWhoLike: usersWhoLikedThePost,
-      likes: usersWhoLikedThePost.length,
+      likes: usersWhoLikedThePost.length
     };
     updatePost(id, modifiedFields, false);
     setCurrentPost({ ...currentPost, ...modifiedFields });
@@ -66,7 +67,7 @@ const PostScreen = ({ post }) => {
 
     let modifiedFields = {
       usersWhoLike: usersWhoLikedThePost,
-      likes: usersWhoLikedThePost.length,
+      likes: usersWhoLikedThePost.length
     };
     updatePost(id, modifiedFields, false);
     setCurrentPost({ ...currentPost, ...modifiedFields });
@@ -74,6 +75,7 @@ const PostScreen = ({ post }) => {
 
   return (
     <Container py={2} maxW='container.md'>
+      <SEO />
       <Header />
       <VStack spacing={1} mb={3} alignItems='flex-start'>
         <Heading color='purple.500' mt={2} as='h2'>
@@ -150,12 +152,12 @@ export const getServerSideProps = async (ctx) => {
   const post = await getPostById(ctx.query.id);
   if (!post)
     return {
-      notFound: true,
+      notFound: true
     };
   return {
     props: {
-      post,
-    },
+      post
+    }
   };
 };
 export default PostScreen;

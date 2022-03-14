@@ -4,7 +4,7 @@ import {
   FormLabel,
   Heading,
   FormErrorMessage,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
@@ -16,6 +16,7 @@ import { toast } from 'react-toastify';
 import { CustomInput } from '../../src/components/CustomInput';
 import { withPublic } from '../../src/components/hoc/withAuth';
 import PublicComponent from '../../src/components/PublicComponent';
+import SEO from '../../src/components/seo';
 
 const Register = () => {
   const { register } = useAuth();
@@ -30,7 +31,7 @@ const Register = () => {
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: true
         });
       })
       .catch((err) => {
@@ -41,7 +42,7 @@ const Register = () => {
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
-          pauseOnHover: true,
+          pauseOnHover: true
         });
       });
     setSubmitting(false);
@@ -49,6 +50,7 @@ const Register = () => {
 
   return (
     <PublicComponent>
+      <SEO />
       <Header isLoginScreen />
       <Heading>Register to my blog</Heading>
       <Formik

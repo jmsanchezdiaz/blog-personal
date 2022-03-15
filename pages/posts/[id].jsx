@@ -25,7 +25,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { useTwitterLink } from '../../src/hooks/useTwitterLink';
-import SEO from '../../src/components/seo.jsx';
+import SEO from '../../src/components/seo/seo.jsx';
 
 const PostScreen = ({ post }) => {
   const { authUser } = useAuth();

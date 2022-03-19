@@ -48,7 +48,7 @@ const PostScreen = ({ post }) => {
     }
 
     const usersWhoLikedThePost = usersWhoLike.filter(
-      (user) => user.id !== authUser.id
+      (userEmail) => userEmail !== authUser.email
     );
 
     let modifiedFields = {

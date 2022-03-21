@@ -2,7 +2,7 @@
 
 Este proyecto nace cuando decidi lanzarme a aprender next js y chakra ui. Creo que gracias a este proyecto aprendi muchas cosas, y no menos importante me diverti desarrollandolo.
 
-[!screenshot blog](./public/screenshot.png)
+![screenshot blog](./public/screenshot.png)
 
 :bust_in_silhouette: **Funcionalidades De Usuario.**
 

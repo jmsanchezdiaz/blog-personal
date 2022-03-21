@@ -37,9 +37,4 @@ Este proyecto nace cuando decidi lanzarme a aprender next js y chakra ui. Creo q
 - Formik
 - Yup
 
-## Futuras funcionalidades
-
-1. Poder recuperar tu contraseña.
-2. Poder comentar un post.
-
 # Saludos gigantes :wave: :wave:

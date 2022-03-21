@@ -17,7 +17,8 @@ const Create = () => {
       tags: curTags,
       date: Date.now(),
       likes: 0,
-      usersWhoLike: [],
+      comments: [],
+      usersWhoLike: []
     };
     createPost(newPost);
     resetForm();
@@ -41,7 +42,7 @@ const Create = () => {
 
 export const getServerSideProps = withPrivate(() => {
   return {
-    props: {},
+    props: {}
   };
 });
 

@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 import es from 'date-fns/locale/es';
 import cookie from 'cookie';
-import Cookies from 'js-cookie';
 
 export const parseArrayToString = (arr = []) => arr?.join(', ');
 
@@ -19,8 +18,8 @@ export const formatDate = (ms) => {
     locale: {
       code: es.code,
       localize: es.localize,
-      formatLong: es.formatLong,
-    },
+      formatLong: es.formatLong
+    }
   });
 
   return formattedDate;
@@ -29,3 +28,6 @@ export const formatDate = (ms) => {
 export const parseCookie = (req) => {
   return cookie.parse(req ? req.headers.cookie || '' : '');
 };
+
+export const getUsernameFromEmail = (email) =>
+  email ? email.slice(0, email.indexOf('@')) : 'Anonimo';

@@ -3,7 +3,7 @@ import {
   addPost,
   deletePostById,
   getPosts,
-  updatePostsById,
+  updatePostsById
 } from '../dbcontrollers/controllers';
 import { errorToast, successToast } from '../helpers/toasts';
 
@@ -43,8 +43,8 @@ export default function PostProvider({ children }) {
         if (notify) successToast('Post actualizado correctamente');
         setPosts((prevState) =>
           prevState.map((post) =>
-            post.id === id ? { ...post, ...updatedFields } : post,
-          ),
+            post.id === id ? { ...post, ...updatedFields } : post
+          )
         );
       })
       .catch((err) => errorToast(err.message));

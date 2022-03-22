@@ -7,13 +7,11 @@ import {
   Container,
   Divider,
   Heading,
-  HStack,
   IconButton,
   Stack,
   Text,
   Textarea,
-  useColorModeValue,
-  VStack
+  useColorModeValue
 } from '@chakra-ui/react';
 import {
   AiFillHeart,
@@ -148,7 +146,7 @@ const PostScreen = ({ post }) => {
         }
       />
       <Header />
-      <VStack spacing={1} mb={3} alignItems='flex-start'>
+      <Stack spacing={1} mb={3} alignItems='flex-start'>
         <Heading color='purple.500' mt={2} as='h2'>
           {capitalize(title)}
         </Heading>
@@ -158,7 +156,7 @@ const PostScreen = ({ post }) => {
             Juan Manuel Sanchez Diaz
           </Text>
         </Text>
-        <HStack>
+        <Stack direction='row'>
           <CalendarIcon />
           <Time
             fontStyle='italic'
@@ -167,8 +165,8 @@ const PostScreen = ({ post }) => {
             as='h6'
             ms={date}
           />
-        </HStack>
-      </VStack>
+        </Stack>
+      </Stack>
       <Divider />
       <ReactMarkdown
         components={ChakraUIRenderer()}

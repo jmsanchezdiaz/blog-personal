@@ -9,6 +9,7 @@ import {
   Heading,
   HStack,
   IconButton,
+  Stack,
   Text,
   Textarea,
   useColorModeValue,
@@ -176,14 +177,14 @@ const PostScreen = ({ post }) => {
       </ReactMarkdown>
       <Divider />
 
-      <HStack justify='space-between'>
+      <Stack direction='row' justify='space-between'>
         <Heading size='sm'>
           Tags:{' '}
           <Text as='span' fontWeight='light'>
             {parseArrayToString(tags)}
           </Text>
         </Heading>
-        <HStack alignItems='center'>
+        <Stack direction='row' alignItems='center'>
           {isLikedByCurrentUser ? (
             <IconButton
               onClick={dislike}
@@ -203,9 +204,9 @@ const PostScreen = ({ post }) => {
           )}
 
           <Text fontSize='xl'>{likes}</Text>
-        </HStack>
-      </HStack>
-      <HStack py={4} justify='space-between'>
+        </Stack>
+      </Stack>
+      <Stack direction='row' py={4} justify='space-between'>
         <a target='_blank' href={twitterLink} rel='noreferrer'>
           <IconButton
             as='span'
@@ -218,12 +219,13 @@ const PostScreen = ({ post }) => {
           aria-label='toggle visibility of comments'
           icon={<Icon boxSize={8} as={AiOutlineComment} />}
         />
-      </HStack>
+      </Stack>
       <Divider />
       {showComments && (
-        <VStack align='center'>
+        <Stack align='center'>
           {authUser && (
-            <HStack
+            <Stack
+              direction='row'
               borderRadius='lg'
               bg={colorMode}
               p={4}
@@ -237,21 +239,22 @@ const PostScreen = ({ post }) => {
                 resize='none'
                 placeholder='Escribe un comentario...'
               />
-              <VStack align='stretch'>
+              <Stack align='stretch'>
                 <Button onClick={addComment} colorScheme='green'>
                   Publicar
                 </Button>
                 <Button onClick={updateComment} colorScheme='blue'>
                   Actualizar
                 </Button>
-              </VStack>
-            </HStack>
+              </Stack>
+            </Stack>
           )}
           {comments.map((comment) => {
             const commentUsername = getUsernameFromEmail(comment.userEmail);
             const createdAt = capitalize(formatDate(comment.createdAt));
             return (
-              <HStack
+              <Stack
+                direction='row'
                 p={4}
                 m={2}
                 w='full'
@@ -261,17 +264,23 @@ const PostScreen = ({ post }) => {
                 alignItems='flex-start'
                 key={comment.id}>
                 <Avatar size='md' name={commentUsername} />
-                <VStack
+                <Stack
                   divider={<Divider />}
                   w='full'
                   color='gray.700'
                   alignItems='flex-start'>
-                  <HStack justify='space-between' alignItems='center' w='full'>
-                    <Heading fontSize='md'>{commentUsername}</Heading>{' '}
-                    <HStack alignItems='center' spacing={2}>
+                  <Stack
+                    direction='row'
+                    justify='space-between'
+                    alignItems='center'
+                    w='full'>
+                    <Stack>
+                      <Heading fontSize='md'>{commentUsername}</Heading>{' '}
                       <Text as='span' opacity={0.7}>
                         {createdAt}
                       </Text>
+                    </Stack>
+                    <Stack direction='row' alignItems='center' spacing={2}>
                       <IconButton
                         colorScheme='blue'
                         variant='outline'
@@ -284,15 +293,15 @@ const PostScreen = ({ post }) => {
                         onClick={() => deleteComment(comment.id)}
                         icon={<Icon boxSize='15px' as={AiFillDelete} />}
                       />
-                    </HStack>
-                  </HStack>
+                    </Stack>
+                  </Stack>
 
                   <Text>{comment.content}</Text>
-                </VStack>
-              </HStack>
+                </Stack>
+              </Stack>
             );
           })}
-        </VStack>
+        </Stack>
       )}
     </Container>
   );

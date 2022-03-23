@@ -175,7 +175,7 @@ const PostScreen = ({ post }) => {
       </ReactMarkdown>
       <Divider />
 
-      <Stack direction='row' justify='space-between'>
+      <Stack my={4} direction='row' justify='space-between'>
         <Heading size='sm'>
           Tags:{' '}
           <Text as='span' fontWeight='light'>
@@ -223,21 +223,27 @@ const PostScreen = ({ post }) => {
         <Stack align='center'>
           {authUser && (
             <Stack
-              direction='row'
               borderRadius='lg'
               bg={colorMode}
               p={4}
-              align='flex-start'
+              direction={['column', 'row', 'row', 'row']}
+              align={['center', 'center', 'center', 'flex-start']}
+              justify='space-between'
               w='full'
               m={2}>
-              <Avatar size='md' name={username} />
-              <Textarea
-                value={commentContent}
-                onChange={(e) => setCommentContent(e.target.value)}
-                resize='none'
-                placeholder='Escribe un comentario...'
-              />
-              <Stack align='stretch'>
+              <Stack flex={1} direction='row' spacing={4} alignItems='center'>
+                <Avatar size='md' name={username} />
+                <Textarea
+                  value={commentContent}
+                  onChange={(e) => setCommentContent(e.target.value)}
+                  resize='none'
+                  placeholder='Escribe un comentario...'
+                />
+              </Stack>
+              <Stack
+                align='stretch'
+                justify='center'
+                direction={['row', 'column', 'column', 'column']}>
                 <Button onClick={addComment} colorScheme='green'>
                   Publicar
                 </Button>
@@ -278,20 +284,22 @@ const PostScreen = ({ post }) => {
                         {createdAt}
                       </Text>
                     </Stack>
-                    {authUser && <Stack direction='row' alignItems='center' spacing={2}>
-                      <IconButton
-                        colorScheme='blue'
-                        variant='outline'
-                        onClick={() => selectComment(comment)}
-                        icon={<Icon boxSize='15px' as={AiFillEdit} />}
-                      />
-                      <IconButton
-                        colorScheme='red'
-                        variant='outline'
-                        onClick={() => deleteComment(comment.id)}
-                        icon={<Icon boxSize='15px' as={AiFillDelete} />}
-                      />
-                    </Stack>}
+                    {authUser && (
+                      <Stack direction='row' alignItems='center' spacing={2}>
+                        <IconButton
+                          colorScheme='blue'
+                          variant='outline'
+                          onClick={() => selectComment(comment)}
+                          icon={<Icon boxSize='15px' as={AiFillEdit} />}
+                        />
+                        <IconButton
+                          colorScheme='red'
+                          variant='outline'
+                          onClick={() => deleteComment(comment.id)}
+                          icon={<Icon boxSize='15px' as={AiFillDelete} />}
+                        />
+                      </Stack>
+                    )}
                   </Stack>
 
                   <Text>{comment.content}</Text>

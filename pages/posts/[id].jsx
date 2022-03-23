@@ -278,7 +278,7 @@ const PostScreen = ({ post }) => {
                         {createdAt}
                       </Text>
                     </Stack>
-                    <Stack direction='row' alignItems='center' spacing={2}>
+                    {authUser && <Stack direction='row' alignItems='center' spacing={2}>
                       <IconButton
                         colorScheme='blue'
                         variant='outline'
@@ -291,7 +291,7 @@ const PostScreen = ({ post }) => {
                         onClick={() => deleteComment(comment.id)}
                         icon={<Icon boxSize='15px' as={AiFillDelete} />}
                       />
-                    </Stack>
+                    </Stack>}
                   </Stack>
 
                   <Text>{comment.content}</Text>

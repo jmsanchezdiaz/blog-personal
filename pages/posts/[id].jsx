@@ -1,6 +1,5 @@
-import Header from '../../src/components/Header';
-import Time from '../../src/components/Time';
-import { CalendarIcon, Icon } from '@chakra-ui/icons';
+import Header from "../../src/components/Header";import Time from "../../src/components/Time";
+import { CalendarIcon, Icon } from "@chakra-ui/icons";
 import {
   Avatar,
   Button,
@@ -12,7 +11,7 @@ import {
   Text,
   Textarea,
   useColorModeValue
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 import {
   AiFillHeart,
   AiOutlineHeart,
@@ -20,23 +19,23 @@ import {
   AiOutlineComment,
   AiFillEdit,
   AiFillDelete
-} from 'react-icons/ai';
-import { getPostById } from '../../src/dbcontrollers/controllers';
+} from "react-icons/ai";
+import { getPostById } from "../../src/dbcontrollers/controllers";
 import {
   capitalize,
   getUsernameFromEmail,
   parseArrayToString,
   formatDate
-} from '../../src/helpers/helpers';
-import { useState } from 'react';
-import { useAuth } from '../../src/hooks/useAuth';
-import { usePosts } from '../../src/hooks/usePosts';
-import { errorToast, infoToast } from '../../src/helpers/toasts';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
-import { useTwitterLink } from '../../src/hooks/useTwitterLink';
-import SEO from '../../src/components/seo/seo.jsx';
+} from "../../src/helpers/helpers";
+import { useState } from "react";
+import { useAuth } from "../../src/hooks/useAuth";
+import { usePosts } from "../../src/hooks/usePosts";
+import { errorToast, infoToast } from "../../src/helpers/toasts";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import { useTwitterLink } from "../../src/hooks/useTwitterLink";
+import SEO from "../../src/components/seo/seo.jsx";
 
 const PostScreen = ({ post }) => {
   const { authUser } = useAuth();
@@ -47,12 +46,12 @@ const PostScreen = ({ post }) => {
   const { id, likes, usersWhoLike, content, title, tags, date, comments } =
     currentPost;
   const username = getUsernameFromEmail(authUser?.email);
-  const colorMode = useColorModeValue('white', 'gray.700');
-  const [commentContent, setCommentContent] = useState('');
+  const colorMode = useColorModeValue("white", "gray.700");
+  const [commentContent, setCommentContent] = useState("");
 
   const addComment = () => {
     if (!commentContent)
-      return errorToast('No se puede publicar un comentario vacio!');
+      return errorToast("No se puede publicar un comentario vacio!");
     const newComment = {
       id: comments.length + 1,
       content: commentContent,
@@ -65,12 +64,12 @@ const PostScreen = ({ post }) => {
       ...prv,
       comments: mappedComments
     }));
-    setCommentContent('');
+    setCommentContent("");
   };
 
   const updateComment = () => {
     if (!commentContent)
-      return errorToast('No se puede actualizar un comentario vacio!');
+      return errorToast("No se puede actualizar un comentario vacio!");
 
     const mappedComments = comments.map((comm) =>
       comm.id === commId ? { ...comm, content: commentContent } : comm
@@ -80,7 +79,7 @@ const PostScreen = ({ post }) => {
       ...prv,
       comments: mappedComments
     }));
-    setCommentContent('');
+    setCommentContent("");
   };
 
   const deleteComment = (_id) => {
@@ -100,7 +99,7 @@ const PostScreen = ({ post }) => {
   const twitterLink = useTwitterLink({
     title: title,
     hashtags: tags,
-    fallbackURL: 'https://twitter.com'
+    fallbackURL: "https://twitter.com"
   });
 
   const isLikedByCurrentUser = usersWhoLike?.includes(authUser?.email);
@@ -108,7 +107,7 @@ const PostScreen = ({ post }) => {
   const dislike = () => {
     if (likes < 1) return;
     if (!authUser) {
-      return infoToast('Debe estar logeado para dar interactuar');
+      return infoToast("Debe estar logeado para dar interactuar");
     }
 
     const usersWhoLikedThePost = usersWhoLike.filter(
@@ -125,7 +124,7 @@ const PostScreen = ({ post }) => {
 
   const like = () => {
     if (!authUser) {
-      return infoToast('Debe estar logeado para dar interactuar');
+      return infoToast("Debe estar logeado para dar interactuar");
     }
     const usersWhoLikedThePost = usersWhoLike.concat(authUser.email);
 
@@ -138,31 +137,31 @@ const PostScreen = ({ post }) => {
   };
 
   return (
-    <Container py={2} maxW='container.md'>
+    <Container py={2} maxW="container.md">
       <SEO
         title={post.title}
         description={
-          'Post que trata sobre los siguentes temas: ' + post.tags.join(', ')
+          "Post que trata sobre los siguentes temas: " + post.tags.join(", ")
         }
       />
       <Header />
-      <Stack spacing={1} mb={3} alignItems='flex-start'>
-        <Heading color='purple.500' mt={2} as='h2'>
+      <Stack spacing={1} mb={3} alignItems="flex-start">
+        <Heading color="purple.500" mt={2} as="h2">
           {capitalize(title)}
         </Heading>
-        <Text fontStyle='italic' as='h4'>
-          Escrito por{' '}
-          <Text as='span' fontWeight='semibold'>
+        <Text fontStyle="italic" as="h4">
+          Escrito por{" "}
+          <Text as="span" fontWeight="semibold">
             Juan Manuel Sanchez Diaz
           </Text>
         </Text>
-        <Stack direction='row'>
+        <Stack direction="row">
           <CalendarIcon />
           <Time
-            fontStyle='italic'
-            fontSize='sm'
-            aria-label='date of post creation'
-            as='h6'
+            fontStyle="italic"
+            fontSize="sm"
+            aria-label="date of post creation"
+            as="h6"
             ms={date}
           />
         </Stack>
@@ -175,81 +174,86 @@ const PostScreen = ({ post }) => {
       </ReactMarkdown>
       <Divider />
 
-      <Stack my={4} direction='row' justify='space-between'>
-        <Heading size='sm'>
-          Tags:{' '}
-          <Text as='span' fontWeight='light'>
+      <Stack my={4} direction="row" justify="space-between">
+        <Heading size="sm">
+          Tags:{" "}
+          <Text as="span" fontWeight="light">
             {parseArrayToString(tags)}
           </Text>
         </Heading>
-        <Stack direction='row' alignItems='center'>
+        <Stack direction="row" alignItems="center">
           {isLikedByCurrentUser ? (
             <IconButton
               onClick={dislike}
-              size='lg'
-              colorScheme='red'
-              variant='ghost'
+              size="lg"
+              colorScheme="red"
+              variant="ghost"
               icon={<Icon as={AiFillHeart} />}
             />
           ) : (
             <IconButton
               onClick={like}
-              size='lg'
-              colorScheme='red'
-              variant='ghost'
+              size="lg"
+              colorScheme="red"
+              variant="ghost"
               icon={<Icon as={AiOutlineHeart} />}
             />
           )}
 
-          <Text fontSize='xl'>{likes}</Text>
+          <Text fontSize="xl">{likes}</Text>
         </Stack>
       </Stack>
-      <Stack direction='row' py={4} justify='space-between'>
-        <a target='_blank' href={twitterLink} rel='noreferrer'>
+      <Stack direction="row" py={4} justify="space-between">
+        <a target="_blank" href={twitterLink} rel="noreferrer">
           <IconButton
-            as='span'
+            as="span"
             icon={<Icon boxSize={8} as={AiFillTwitterCircle} />}
-            colorScheme='blue'
+            colorScheme="blue"
           />
         </a>
-        <IconButton
-          onClick={() => setShowComments(!showComments)}
-          aria-label='toggle visibility of comments'
-          icon={<Icon boxSize={8} as={AiOutlineComment} />}
-        />
+        <Stack direction="row" gap={1} justify="space-between" align="center">
+          <Text fontWeight={600} fontSize="xl">
+            {comments.length}
+          </Text>
+          <IconButton
+            onClick={() => setShowComments(!showComments)}
+            aria-label="toggle visibility of comments"
+            icon={<Icon boxSize={8} as={AiOutlineComment} />}
+          />
+        </Stack>
       </Stack>
       <Divider />
       {showComments && (
-        <Stack align='center'>
+        <Stack align="center">
           {authUser && (
             <Stack
-              borderRadius='lg'
+              borderRadius="lg"
               bg={colorMode}
               p={4}
-              direction={['column', 'row', 'row', 'row']}
-              align={['center', 'center', 'center', 'flex-start']}
-              justify='space-between'
-              w='full'
+              direction={["column", "row", "row", "row"]}
+              align={["center", "center", "center", "flex-start"]}
+              justify="space-between"
+              w="full"
               m={2}>
-              <Stack flex={1} direction='row' spacing={4} alignItems='center'>
-                <Avatar size='md' name={username} />
+              <Stack flex={1} direction="row" spacing={4} alignItems="center">
+                <Avatar size="md" name={username} />
                 <Textarea
                   value={commentContent}
                   onChange={(e) => setCommentContent(e.target.value)}
-                  resize='none'
-                  placeholder='Escribe un comentario...'
+                  resize="none"
+                  placeholder="Escribe un comentario..."
                 />
               </Stack>
               <Stack
-                align='stretch'
-                justify='center'
-                direction={['row', 'column', 'column', 'column']}>
-                <Button onClick={addComment} colorScheme='green'>
+                align="stretch"
+                justify="center"
+                direction={["row", "column", "column", "column"]}>
+                <Button onClick={addComment} colorScheme="green">
                   Publicar
                 </Button>
-                <Button onClick={updateComment} colorScheme='blue'>
-                  Actualizar
-                </Button>
+                  <Button onClick={updateComment} colorScheme="blue">
+                    Actualizar
+                  </Button>
               </Stack>
             </Stack>
           )}
@@ -258,45 +262,45 @@ const PostScreen = ({ post }) => {
             const createdAt = capitalize(formatDate(comment.createdAt));
             return (
               <Stack
-                direction='row'
+                direction="row"
                 p={4}
                 m={2}
-                w='full'
-                bg='white'
-                borderRadius='lg'
-                justify='flex-start'
-                alignItems='flex-start'
+                w="full"
+                bg="white"
+                borderRadius="lg"
+                justify="flex-start"
+                alignItems="flex-start"
                 key={comment.id}>
-                <Avatar size='md' name={commentUsername} />
+                <Avatar size="md" name={commentUsername} />
                 <Stack
                   divider={<Divider />}
-                  w='full'
-                  color='gray.700'
-                  alignItems='flex-start'>
+                  w="full"
+                  color="gray.700"
+                  alignItems="flex-start">
                   <Stack
-                    direction='row'
-                    justify='space-between'
-                    alignItems='center'
-                    w='full'>
+                    direction="row"
+                    justify="space-between"
+                    alignItems="center"
+                    w="full">
                     <Stack>
-                      <Heading fontSize='md'>{commentUsername}</Heading>{' '}
-                      <Text as='span' opacity={0.7}>
+                      <Heading fontSize="md">{commentUsername}</Heading>{" "}
+                      <Text as="span" opacity={0.7}>
                         {createdAt}
                       </Text>
                     </Stack>
                     {authUser && (
-                      <Stack direction='row' alignItems='center' spacing={2}>
+                      <Stack direction="row" alignItems="center" spacing={2}>
                         <IconButton
-                          colorScheme='blue'
-                          variant='outline'
+                          colorScheme="blue"
+                          variant="outline"
                           onClick={() => selectComment(comment)}
-                          icon={<Icon boxSize='15px' as={AiFillEdit} />}
+                          icon={<Icon boxSize="15px" as={AiFillEdit} />}
                         />
                         <IconButton
-                          colorScheme='red'
-                          variant='outline'
+                          colorScheme="red"
+                          variant="outline"
                           onClick={() => deleteComment(comment.id)}
-                          icon={<Icon boxSize='15px' as={AiFillDelete} />}
+                          icon={<Icon boxSize="15px" as={AiFillDelete} />}
                         />
                       </Stack>
                     )}
